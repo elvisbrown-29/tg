@@ -136,19 +136,16 @@ const botAPI = {
 const priceAPI = {
     async getTONPrice() {
         try {
-            console.log('Fetching TON price from CoinGecko...');
-            const response = await fetch(
-                'https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd&include_24hr_change=true',
-                {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Cache-Control': 'no-cache'
-                    }
+            console.log('Fetching TON price...');
+            const response = await fetch('/api/price/ton', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache'
                 }
-            );
+            });
 
             if (!response.ok) {
-                throw new Error(`CoinGecko API request failed: ${response.status}`);
+                throw new Error(`Price API request failed: ${response.status}`);
             }
 
             const data = await response.json();
